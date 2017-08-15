@@ -3,21 +3,14 @@ rdf_prefix_path: content.pref
 layout: default
 ---
 {% assign baseurl = site.url %}
-<div class="container">
-    <div class="card">
-        <div class="card-block">
-        <div class="heading-title text-center">
-            <h3 class="text-uppercase">{{ page.rdf | rdf_property: 'dc:title' }}</h3>
-            <p class="p-top-30 half-txt">a publication</p>
-            <hr>
-        </div>
-        </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card-block">
-                <h4 class="card-title">Authors</h4>
-                <table class="table table-bordered table-hover">
-                <tbody>
+<div class="wrapper">
+    <div class="page">
+        <h2 style="text-align: center">{{ page.rdf | rdf_property: 'dc:title' }}</h2>
+        <p class="p-bot-30 half-txt">a publication</p>
+        {% include page_divider.html %}
+        <h4>Authors</h4>
+        <table class="table table-bordered table-hover">
+            <tbody>
                 {% capture query %}
                 SELECT ?person ?name WHERE{
                     <{{page.rdf}}> dc:author ?person .
@@ -30,16 +23,9 @@ layout: default
                     <td><a href="../{{ result.person | remove_first: baseurl }}">{{result.name}}</a></td>
                 </tr>
                 {% endfor %}
-                </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card-block">
-                <h4 class="card-title">Abstract</h4>
-                <p> {{ page.rdf | rdf_property: 'ex:longdescription' }}
-            </div>
-        </div>
-    </div>
+            </tbody>
+        </table>
+        <h4 style="text-align: center">Abstract</h4>
+        <p> {{ page.rdf | rdf_property: 'ex:longdescription' }}
     </div>
 </div>

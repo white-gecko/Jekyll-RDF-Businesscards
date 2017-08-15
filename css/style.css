@@ -2,6 +2,14 @@
   margin-bottom: 10px;
   border-radius: 0;
 }
+
+.navigation ul li.dropdown-toggle {
+    border: 0;
+    padding-left: 0;
+    padding-right: 1.5em;
+    margin-left: -1.5em;
+}
+
 footer {
   margin-top: 10px;
 }
